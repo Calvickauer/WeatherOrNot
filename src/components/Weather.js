@@ -6,9 +6,9 @@ const WeatherComponent = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const latitude = 36.60109583806752; // Example latitude
-        const longitude = -121.86435349064406; // Example longitude
-        const apiKey = '73d42074aede0b99cf600647722fc931'; // Enclose the API key in quotes
+        const latitude = 36.60109583806752;
+        const longitude = -121.86435349064406;
+        const apiKey = '73d42074aede0b99cf600647722fc931';
 
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
         const data = await response.json();
@@ -33,7 +33,6 @@ const WeatherComponent = () => {
       {weatherData ? (
         <div>
           <h2>Weather in {weatherData.name}</h2>
-          {/* <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt="Weather Icon" /> */}
           <p className='weather__text'> Current Weather: {weatherData.weather[0].description}<img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt="Weather Icon" /></p>
           <p className='weather__text'>Temperature: {weatherData.main.temp}°F</p>
           <p className='weather__text'>Feels like: {weatherData.main.feels_like}°F</p>
@@ -41,7 +40,6 @@ const WeatherComponent = () => {
           <p className='weather__text'>Min Temp: {weatherData.main.temp_min}°F</p>
           <p className='weather__text'>Humidity: {weatherData.main.humidity}%</p>
           <p className='weather__text'>Wind Speed: {weatherData.wind.speed}</p>
-          {/* Display additional weather information as needed */}
         </div>
       ) : (
         <p>Loading weather data...</p>
