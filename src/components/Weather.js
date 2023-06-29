@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-
 const WeatherComponent = () => {
+  const [cityName, setCityName] = useState('');
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const latitude = 36.60109583806752;
-        const longitude = -121.86435349064406;
         const apiKey = '73d42074aede0b99cf600647722fc931';
 
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`);
         const data = await response.json();
-        console.log(data);
-        data.main.temp = ((data.main.temp * 9/5) + 32).toFixed(2);
-        data.main.feels_like = ((data.main.feels_like * 9/5) + 32).toFixed(2);
-        data.main.temp_max = ((data.main.temp_max * 9/5) + 32).toFixed(2);
-        data.main.temp_min = ((data.main.temp_min * 9/5) + 32).toFixed(2);
+        data.main.temp = ((data.main.temp * 9 / 5) + 32).toFixed(2);
+        data.main.feels_like = ((data.main.feels_like * 9 / 5) + 32).toFixed(2);
+        data.main.temp_max = ((data.main.temp_max * 9 / 5) + 32).toFixed(2);
+        data.main.temp_min = ((data.main.temp_min * 9 / 5) + 32).toFixed(2);
         data.weather[0].description = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1).toLowerCase();
         console.log(data);
         setWeatherData(data);
@@ -26,11 +23,25 @@ const WeatherComponent = () => {
       }
     };
 
-    fetchWeatherData();
-  }, []);
+    if (cityName) {
+      fetchWeatherData();
+    }
+  }, [cityName]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Trigger weather data fetching when the form is submitted
+    setCityName(event.target.elements.city.value);
+  };
 
   return (
     <div className='weather__data'>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="city">Enter City:</label>
+        <input type="text" id="city" name="city" />
+        <button type="submit">Get Weather</button>
+      </form>
+
       {weatherData ? (
         <div>
           <h2>Weather in {weatherData.name}</h2>
@@ -43,7 +54,7 @@ const WeatherComponent = () => {
           <p className='weather__text'>Wind Speed: {weatherData.wind.speed}</p>
         </div>
       ) : (
-        <p>Loading weather data...</p>
+        <p>Enter a city name to get the weather</p>
       )}
     </div>
   );

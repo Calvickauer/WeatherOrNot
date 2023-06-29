@@ -31,5 +31,7 @@ body {
 }
 
 .weather__text{
-  background-color: white;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding-left: 10px;
 }
