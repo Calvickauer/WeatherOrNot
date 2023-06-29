@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+
 const WeatherComponent = () => {
   const [weatherData, setWeatherData] = useState(null);
 
@@ -13,10 +14,10 @@ const WeatherComponent = () => {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
         const data = await response.json();
         console.log(data);
-        data.main.temp = (data.main.temp * 9/5) + 32;
-        data.main.feels_like = (data.main.feels_like * 9/5) + 32;
-        data.main.temp_max = (data.main.temp_max * 9/5) + 32;
-        data.main.temp_min = (data.main.temp_min * 9/5) + 32;
+        data.main.temp = ((data.main.temp * 9/5) + 32).toFixed(2);
+        data.main.feels_like = ((data.main.feels_like * 9/5) + 32).toFixed(2);
+        data.main.temp_max = ((data.main.temp_max * 9/5) + 32).toFixed(2);
+        data.main.temp_min = ((data.main.temp_min * 9/5) + 32).toFixed(2);
         data.weather[0].description = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1).toLowerCase();
         console.log(data);
         setWeatherData(data);
