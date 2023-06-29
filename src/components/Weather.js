@@ -27,14 +27,14 @@ const WeatherComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div className='weather__data'>
       {weatherData ? (
         <div>
-          <h2>Weather for your location</h2>
-          <p>Weather: {weatherData.weather[0].description}</p>
-          <p>Temperature: {weatherData.main.temp}°F</p>
-          <p>Feels like: {weatherData.main.feels_like}°F</p>
-          <p>Humidity: {weatherData.main.humidity}%</p>
+          <h2>Weather in {weatherData.name}, California!</h2>
+          <p className='weather__text'> Current Weather: {weatherData.weather[0].description}</p>
+          <p className='weather__text'>Temperature: {weatherData.main.temp}°F</p>
+          <p className='weather__text'>Feels like: {weatherData.main.feels_like}°F</p>
+          <p className='weather__text'>Humidity: {weatherData.main.humidity}%</p>
           {/* Display additional weather information as needed */}
         </div>
       ) : (

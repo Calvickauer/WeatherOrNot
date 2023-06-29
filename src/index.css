@@ -2,8 +2,29 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  text-align: center;
 }
 ​
 .logout-link {
   cursor: pointer;
+}
+
+.weatherApi__container{
+  margin: auto;
+  background-color: gold;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.weather__data{
+  background-color: rgba(255, 0, 0, 0.73);
+  text-align: center;
+  width: fit-content;
+  padding: 10px;
+  border: 2px solid black;
+  margin: auto;
+}
+
+.weather__text{
+  background-color: white;
 }

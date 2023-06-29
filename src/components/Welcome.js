@@ -6,7 +6,9 @@ const Welcome = () => {
         <div>
             <h1>Weather or Not</h1>
             <p>Lets check the weather!</p>
-            < WeatherApi />
+            <div className='weatherApi__container'>
+                < WeatherApi />
+            </div>
         </div>
     )
 }
