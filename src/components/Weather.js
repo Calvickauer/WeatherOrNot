@@ -15,6 +15,8 @@ const WeatherComponent = () => {
         console.log(data);
         data.main.temp = (data.main.temp * 9/5) + 32;
         data.main.feels_like = (data.main.feels_like * 9/5) + 32;
+        data.main.temp_max = (data.main.temp_max * 9/5) + 32;
+        data.main.temp_min = (data.main.temp_min * 9/5) + 32;
         data.weather[0].description = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1).toLowerCase();
         console.log(data);
         setWeatherData(data);
@@ -30,10 +32,12 @@ const WeatherComponent = () => {
     <div className='weather__data'>
       {weatherData ? (
         <div>
-          <h2>Weather in {weatherData.name}, California!</h2>
+          <h2>Weather in {weatherData.name}</h2>
           <p className='weather__text'> Current Weather: {weatherData.weather[0].description}</p>
           <p className='weather__text'>Temperature: {weatherData.main.temp}°F</p>
           <p className='weather__text'>Feels like: {weatherData.main.feels_like}°F</p>
+          <p className='weather__text'>Max Temp: {weatherData.main.temp_max}°F</p>
+          <p className='weather__text'>Min Temp: {weatherData.main.temp_min}°F</p>
           <p className='weather__text'>Humidity: {weatherData.main.humidity}%</p>
           {/* Display additional weather information as needed */}
         </div>
