@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import audioFile from '../audio/MainSong.mp3';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
+import audioFile from '../audio/MainSong1.mp3';
 import WeatherApi from './Weather';
 
 const Welcome = () => {
@@ -31,7 +33,13 @@ const Welcome = () => {
       </div>
 
       <div>
-        <button onClick={togglePlay}>{isPlaying ? 'Pause Music' : 'Play Music'}</button>
+        <button onClick={togglePlay}>
+          {isPlaying ? (
+            <h5>Pause <FontAwesomeIcon icon={faPause} /></h5>
+          ) : (
+            <h5>Play <FontAwesomeIcon icon={faPlay} /></h5>
+          )}
+        </button>
       </div>
 
       <audio ref={audioRef} src={audioFile} />
