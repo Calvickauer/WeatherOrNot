@@ -17,9 +17,23 @@ const Welcome = () => {
     setIsPlaying(!isPlaying);
   };
 
-  useEffect(() => {
-    audioRef.current.play();
+  const handleSongEnd = () => {
+    setIsPlaying(false);
+    audioRef.current.currentTime = 0;
+    const currentAudioRef = audioRef.current;
+    currentAudioRef.play();
     setIsPlaying(true);
+  };
+
+  useEffect(() => {
+    const currentAudioRef = audioRef.current;
+    currentAudioRef.addEventListener('ended', handleSongEnd);
+    currentAudioRef.play();
+    setIsPlaying(true);
+
+    return () => {
+      currentAudioRef.removeEventListener('ended', handleSongEnd);
+    };
   }, []);
 
   return (
