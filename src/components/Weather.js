@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+const apiKey = process.env.REACT_APP_API_KEY;
+
 const WeatherComponent = () => {
   const [cityName, setCityName] = useState('');
   const [weatherData, setWeatherData] = useState(null);
@@ -7,7 +9,6 @@ const WeatherComponent = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const apiKey = '73d42074aede0b99cf600647722fc931';
         let url;
 
         if (cityName) {
