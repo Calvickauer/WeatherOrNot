@@ -4,6 +4,7 @@ import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import audioFile from '../audio/MainSong1.mp3';
 import WeatherApi from './Weather';
 import Youtube from './Youtube';
+import Countries from './Countries';
 
 const Welcome = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -45,6 +46,7 @@ const Welcome = () => {
           <p>Lets check the weather!</p>
         </div>
         <WeatherApi />
+        <Countries />
         <Youtube />
       </div>
 
