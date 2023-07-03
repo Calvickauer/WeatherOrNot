@@ -39,28 +39,28 @@ const Welcome = () => {
   }, []);
 
   return (
-    <div>
+    <div className='body__container'>
       <div className='weatherApi__container'>
         <div>
           <h1>Weather or Not!</h1>
           <p>Lets check the weather!</p>
         </div>
         <WeatherApi />
+            </div>
         <Countries />
-        <Youtube />
-      </div>
-
       <div>
         <button onClick={togglePlay}>
           {isPlaying ? (
-            <h5>Pause <FontAwesomeIcon icon={faPause} /></h5>
-          ) : (
-            <h5>Play <FontAwesomeIcon icon={faPlay} /></h5>
-          )}
+              <h5>Pause <FontAwesomeIcon icon={faPause} /></h5>
+              ) : (
+                  <h5>Play <FontAwesomeIcon icon={faPlay} /></h5>
+                  )}
         </button>
       </div>
 
       <audio ref={audioRef} src={audioFile} />
+
+                  <Youtube />
     </div>
   );
 };

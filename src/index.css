@@ -6,6 +6,11 @@ body {
   font-family: sans-serif;
   text-align: center;
 }
+
+.body__container{
+  display: grid;
+  background-color: lightblue;
+}
 ​
 .logout-link {
   cursor: pointer;
@@ -123,4 +128,24 @@ body {
   border: 1px solid black;
   font-size: larger;
   
+}
+
+.country__list{
+  max-height: 300px;
+  overflow-y: scroll;
+  background-color: rgb(248, 198, 198);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+.country__choice{
+  max-height: fit-content;
+  background-color: lightgray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
 }
