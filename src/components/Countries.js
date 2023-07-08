@@ -33,7 +33,7 @@ const Countries = () => {
   return (
     <div className='country__choice'>
       {selectedCountry && (
-        <div>
+          <div>
           <h2>{selectedCountry.name.common}</h2>
           <p>Region: {selectedCountry.region}</p>
           <p>Subregion: {selectedCountry.subregion}</p>
@@ -44,14 +44,14 @@ const Countries = () => {
         <h1>List of Countries</h1>
         <ul>
           {countries.map((country) => (
-            <li key={country.name.common} onClick={(event) => handleCountryClick(event, country)}>
+              <li key={country.name.common} onClick={(event) => handleCountryClick(event, country)}>
               <a href='/'>{country.name.common}</a> {country.flag}
             </li>
           ))}
         </ul>
-      </div>
-      {selectedCountry && <WeatherComponent selectedCountry={selectedCountry} />}
-    </div>
+          </div>
+          {selectedCountry && <WeatherComponent selectedCountry={selectedCountry} />}
+        </div>
   );
 };
 
