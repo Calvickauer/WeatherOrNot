@@ -6,25 +6,25 @@ const WeatherComponent = ({ selectedCountry }) => {
   const [cityName, setCityName] = useState('');
   const [weatherData, setWeatherData] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async (url) => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        data.main.temp = ((data.main.temp * 9) / 5 + 32).toFixed(2);
-        data.main.feels_like = ((data.main.feels_like * 9) / 5 + 32).toFixed(2);
-        data.main.temp_max = ((data.main.temp_max * 9) / 5 + 32).toFixed(2);
-        data.main.temp_min = ((data.main.temp_min * 9) / 5 + 32).toFixed(2);
-        data.weather[0].description =
-          data.weather[0].description.charAt(0).toUpperCase() +
-          data.weather[0].description.slice(1).toLowerCase();
-        console.log(data);
-        setWeatherData(data);
-      } catch (error) {
-        console.error('My Error ', error);
-      }
-    };
+  const fetchData = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      data.main.temp = ((data.main.temp * 9) / 5 + 32).toFixed(2);
+      data.main.feels_like = ((data.main.feels_like * 9) / 5 + 32).toFixed(2);
+      data.main.temp_max = ((data.main.temp_max * 9) / 5 + 32).toFixed(2);
+      data.main.temp_min = ((data.main.temp_min * 9) / 5 + 32).toFixed(2);
+      data.weather[0].description =
+        data.weather[0].description.charAt(0).toUpperCase() +
+        data.weather[0].description.slice(1).toLowerCase();
+      console.log(data);
+      setWeatherData(data);
+    } catch (error) {
+      console.error('My Error ', error);
+    }
+  };
 
+  useEffect(() => {
     if (selectedCountry && selectedCountry.capital && selectedCountry.capital[0]) {
       setCityName(selectedCountry.capital[0]);
     } else {
@@ -32,7 +32,6 @@ const WeatherComponent = ({ selectedCountry }) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setCityName('');
           const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
           fetchData(url);
         },
@@ -41,15 +40,23 @@ const WeatherComponent = ({ selectedCountry }) => {
         }
       );
     }
+  }, [selectedCountry]);
 
-    if (cityName) {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
-      fetchData(url);
-    }
-  }, [selectedCountry, cityName]);
+  const handleSearch = () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+    fetchData(url);
+  };
 
   return (
     <div className='weather__data'>
+      <input
+        type='text'
+        value={cityName}
+        onChange={(e) => setCityName(e.target.value)}
+        placeholder='Enter city name'
+      />
+      <button onClick={handleSearch}>Search</button>
+
       {weatherData ? (
         <div>
           <h2>Weather in {weatherData.name}</h2>

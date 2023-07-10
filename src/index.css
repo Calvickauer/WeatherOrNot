@@ -66,7 +66,7 @@ body {
   margin: auto;
   background-color: rgb(13, 212, 20);
   padding: 10px;
-  width: fit-content;
+  max-width: fit-content;
   border-radius: 20px;
   -webkit-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.75);
@@ -82,6 +82,8 @@ body {
   border: 2px solid black;
   margin: auto;
   height: 380px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .weather__textMain{
@@ -131,6 +133,7 @@ body {
   background-color: white;
   color: rgb(0, 0, 0);
   border: 1px solid black;
+  /* font-size: larger; */
 }
 .weather__text0:hover{
   background-color: white;
@@ -199,4 +202,32 @@ body {
 
 .yt__title{
   color: white;
+}
+
+.youtube__list{
+  max-height: 300px;
+  overflow-y: scroll;
+  background-color: rgba(240, 255, 255, 0.71);
+  max-width: 400px;
+  overflow-x: scroll;
+  margin: auto;
+}
+
+/* .youtube__list {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: gray lightgray;
+} */
+
+.youtube__list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.youtube__list::-webkit-scrollbar-track {
+  background: lightgray;
+}
+
+.youtube__list::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 5px;
 }
