@@ -8,27 +8,52 @@ body {
 }
 ​
 .body__container {
-  background-color: rgb(30, 176, 224);
+  background-color: rgb(255, 51, 0);
+  height: 100%;
+  width: 100%;
+}
+
+.content{
+  background-color: rgba(0, 0, 0, 0.613);
+  border: 2px solid gold;
+  border-radius: 20px;
+  margin: auto;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  padding-top: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 2fr;
+  width: fit-content;
+  height: 80vh;
+  overflow-y: scroll;
+  align-items: start;
   grid-template-areas:
-    "music__player" "video__player" "weatherApi__container" "countries_list";
+    "t t"
+    "m m"
+    "v v"
+    "w c";
+}
+
+.title {
+  color: white;
+  grid-area: t;
 }
 
 .weatherApi__container {
-  grid-area: weatherApi__container;
+  grid-area: w;
 }
 
 .countries_list {
-  grid-area: countries_list;
+  grid-area: c;
 }
 
 .music__player {
-  grid-area: music__player;
+  color: white;
+  grid-area: m;
 }
 
 .video__player {
-  grid-area: video__player;
+  grid-area: v;
 }
 
 
@@ -56,7 +81,7 @@ body {
   padding: 10px;
   border: 2px solid black;
   margin: auto;
-  height: 420px;
+  height: 380px;
 }
 
 .weather__textMain{
@@ -106,7 +131,6 @@ body {
   background-color: white;
   color: rgb(0, 0, 0);
   border: 1px solid black;
-  font-size: larger;
 }
 .weather__text0:hover{
   background-color: white;
@@ -152,7 +176,7 @@ body {
 }
 
 .country__list{
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: scroll;
   background-color: rgb(248, 198, 198);
   margin-top: 10px;
@@ -168,5 +192,11 @@ body {
   margin-bottom: 10px;
   border: 1px solid black;
   border-radius: 10px;
-  padding: 10px;
+  padding: 30px;
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.yt__title{
+  color: white;
 }

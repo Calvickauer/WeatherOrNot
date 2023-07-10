@@ -40,29 +40,31 @@ const Welcome = () => {
 
   return (
     <div className='body__container'>
-        <div>
+        <div className='content'>
+        <div className='title'>
           <h1>Weather or Not!</h1>
           <p>Lets check the weather!</p>
         </div>
             <div className='countries_list'>
                 <Countries />
             </div>
-      <div className='weatherApi__container'>
-        <WeatherApi />
+        <div className='weatherApi__container'>
+            <WeatherApi />
             </div>
-      <div className='music__player'>
-        <button onClick={togglePlay}>
-          {isPlaying ? (
-              <h5>Pause <FontAwesomeIcon icon={faPause} /></h5>
-              ) : (
-                  <h5>Play <FontAwesomeIcon icon={faPlay} /></h5>
-                  )}
-        </button>
-        <audio ref={audioRef} src={audioFile} />
+        <div className='music__player'>
+            <button onClick={togglePlay}>
+            {isPlaying ? (
+            <h5>Pause <FontAwesomeIcon icon={faPause} /></h5>
+            ) : (
+            <h5>Play <FontAwesomeIcon icon={faPlay} /></h5>
+                )}
+            </button>
+            <audio ref={audioRef} src={audioFile} />
       </div>
       <div className='video__player'>
         <Youtube />
       </div>
+        </div>
     </div>
   );
 };

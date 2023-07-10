@@ -19,7 +19,7 @@ const Youtube = () => {
 
   return (
     <div>
-      <h1>YouTube Video Search</h1>
+      <h1 className='yt__title'>YouTube Video Search</h1>
       <input type="text" onChange={(e) => searchVideos(e.target.value)} />
 
       <div>

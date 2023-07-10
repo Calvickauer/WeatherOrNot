@@ -40,6 +40,7 @@ const Countries = () => {
           <p>Population: {selectedCountry.population}</p>
         </div>
       )}
+      {selectedCountry && <WeatherComponent selectedCountry={selectedCountry} />}
       <div className='country__list'>
         <h1>List of Countries</h1>
         <ul>
@@ -50,7 +51,6 @@ const Countries = () => {
           ))}
         </ul>
           </div>
-          {selectedCountry && <WeatherComponent selectedCountry={selectedCountry} />}
         </div>
   );
 };
