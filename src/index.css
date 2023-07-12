@@ -30,8 +30,8 @@ body {
   grid-template-areas:
     "t t"
     "m m"
-    "v v"
-    "w c";
+    "w c"
+    "v v";
 }
 
 .title {
