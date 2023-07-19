@@ -15,6 +15,12 @@ const Navbar = (props) => {
                             <NavLink className="nav-link" exact to="/">Home</NavLink>
                         </li>
                         <li className="nav-item">
+                            <NavLink className="nav-link"  to="/weather">Weather</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link"  to="/countries">Countries</NavLink>
+                        </li>
+                        <li className="nav-item">
                             <NavLink className="nav-link"  to="/about">About</NavLink>
                         </li>
                     </ul>

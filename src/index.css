@@ -208,16 +208,10 @@ body {
   max-height: 300px;
   overflow-y: scroll;
   background-color: rgba(240, 255, 255, 0.71);
-  max-width: 400px;
+  max-width: 80%;
   overflow-x: scroll;
   margin: auto;
 }
-
-/* .youtube__list {
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: gray lightgray;
-} */
 
 .youtube__list::-webkit-scrollbar {
   width: 8px;
