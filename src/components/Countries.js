@@ -28,6 +28,7 @@ const Countries = () => {
   const handleCountryClick = (event, country) => {
     event.preventDefault();
     setSelectedCountry(country);
+    console.log("Selected Country -- :",selectedCountry);
   };
 
   return (

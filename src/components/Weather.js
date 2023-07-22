@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -5,6 +6,44 @@ const apiKey = process.env.REACT_APP_API_KEY;
 const WeatherComponent = ({ selectedCountry }) => {
   const [cityName, setCityName] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      setCityName(selectedCountry.capital[0]);
+    }
+  }, [selectedCountry]);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        let url;
+
+        if (cityName) {
+          url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+        } else {
+          // Use browser geolocation to get the user's coordinates
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+              fetchData(url);
+            },
+            (error) => {
+              console.error('Error getting geolocation:', error);
+            }
+          );
+        }
+
+        if (url) {
+          fetchData(url);
+        }
+      } catch (error) {
+        console.error('My Error ', error);
+      }
+    };
+
+    fetchWeatherData();
+  }, [cityName]);
 
   const fetchData = async (url) => {
     try {
@@ -24,39 +63,8 @@ const WeatherComponent = ({ selectedCountry }) => {
     }
   };
 
-  useEffect(() => {
-    if (selectedCountry && selectedCountry.capital && selectedCountry.capital[0]) {
-      setCityName(selectedCountry.capital[0]);
-    } else {
-      // Use browser geolocation to get the user's coordinates
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-          fetchData(url);
-        },
-        (error) => {
-          console.error('Error getting geolocation:', error);
-        }
-      );
-    }
-  }, [selectedCountry]);
-
-  const handleSearch = () => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
-    fetchData(url);
-  };
-
   return (
     <div className='weather__data'>
-      <input
-        type='text'
-        value={cityName}
-        onChange={(e) => setCityName(e.target.value)}
-        placeholder='Enter city name'
-      />
-      <button onClick={handleSearch}>Search</button>
-
       {weatherData ? (
         <div>
           <h2>Weather in {weatherData.name}</h2>
