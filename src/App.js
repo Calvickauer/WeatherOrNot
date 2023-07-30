@@ -17,6 +17,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import WeatherComponent from './components/Weather';
 import Countries from './components/Countries';
+import Teresa from './components/Teresa';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('jwtToken');
@@ -102,6 +103,7 @@ const App = () => {
             <Route path="/about" component={About} />
             <Route path="/weather" component={WeatherComponent} />
             <Route path="/countries" component={Countries} />
+            <Route path="/teresa" component={Teresa} />
           </Switch>
         </div>
         <Footer />

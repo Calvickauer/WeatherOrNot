@@ -225,3 +225,29 @@ body {
   background-color: gray;
   border-radius: 5px;
 }
+
+.t__body{
+  background-image: url(./images/Babe.jpg);
+  background-size: contain;
+  width: 800px;
+  height: 600px;
+  margin: auto;
+  border: 3px solid slateblue;
+  border-radius: 20px;
+}
+
+.t__main{
+  color: white;
+}
+
+.t__main h1 {
+  background-color: black;
+  color: white;
+  border-radius: 18px;
+}
+
+.t__desc{
+  margin-top: 70%;
+  background-color: black;
+  color: white;
+}
