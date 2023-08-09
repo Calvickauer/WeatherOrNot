@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-const { REACT_APP_SERVER_URL } = process.env;
-
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -10,6 +8,13 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        return () => {
+            setErrorMessage('');
+        };
+    }, []);
 
     const handleName = (e) => {
         setName(e.target.value);
@@ -30,24 +35,30 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Check if REACT_APP_SERVER_URL is properly set
-        if (!process.env.REACT_APP_SERVER_URL) {
+        const { REACT_APP_SERVER_URL } = process.env;
+        if (!REACT_APP_SERVER_URL) {
             console.error('REACT_APP_SERVER_URL is not set!');
             return;
         }
 
         if (password === confirmPassword && password.length >= 8) {
             const newUser = { name, email, password };
-            axios.post(`${process.env.REACT_APP_SERVER_URL}/users/signup`, newUser)
+            axios.post(`${REACT_APP_SERVER_URL}/users/signup`, newUser)
                 .then(response => {
                     console.log('===> Yay, new user');
                     console.log(response);
                     setRedirect(true);
                 })
-                .catch(error => console.log('===> Error in Signup', error));
+                .catch(error => {
+                    console.log('===> Error in Signup', error);
+                    setErrorMessage('Error occurred during signup. Please try again.');
+                });
         } else {
-            if (password !== confirmPassword) return alert("Passwords don't match");
-            alert('Password needs to be at least 8 characters. Please try again.');
+            if (password !== confirmPassword) {
+                setErrorMessage("Passwords don't match");
+            } else {
+                setErrorMessage('Password needs to be at least 8 characters. Please try again.');
+            }
         }
     }
 
@@ -75,6 +86,7 @@ const Signup = () => {
                             <label htmlFor="confirmPassword">Confirm Password</label>
                             <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control" />
                         </div>
+                        {errorMessage && <p className="text-danger">{errorMessage}</p>}
                         <button type="submit" className="btn btn-primary float-right">Submit</button>
                     </form>
                 </div>
