@@ -23,13 +23,14 @@ const Navbar = (props) => {
                         <li className="nav-item">
                             <NavLink className="nav-link"  to="/about">About</NavLink>
                         </li>
-                        <li className="nav-item">
+                        {props.isAuth && (
+                            <li className="nav-item">
                                 <NavLink className="nav-link"  to="/teresa">Teresa</NavLink>
-                        </li>
+                            </li>
+                        )}
                     </ul>
-                    {
-                        props.isAuth 
-                        ? <ul className="navbar-nav ml-auto">
+                    {props.isAuth ? (
+                        <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
                                 <NavLink className="nav-link"  to="/profile">Profile</NavLink>
                             </li>
@@ -37,15 +38,16 @@ const Navbar = (props) => {
                                 <span onClick={props.handleLogout} className="nav-link logout-link">Logout</span>
                             </li>
                         </ul>
-                        : <ul className="navbar-nav ml-auto">
+                    ) : (
+                        <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
                                 <NavLink className="nav-link"  to="/signup">Create Account</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link"  to="/login">Login</NavLink>
                             </li>
-                          </ul>
-                    }
+                        </ul>
+                    )}
                 </div>
             </div>
         </nav>
