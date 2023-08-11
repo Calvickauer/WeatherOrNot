@@ -226,17 +226,39 @@ body {
   border-radius: 5px;
 }
 
-.t__body{
-  background-image: url(./images/Babe.jpg);
-  background-size: contain;
+.t__body {
   width: 800px;
   height: 600px;
   margin: auto;
   border: 3px solid slateblue;
   border-radius: 20px;
+  position: relative; /* Add position relative to contain the pseudo-element */
+  overflow: hidden;
 }
 
-.t__main{
+.t__body::before {
+  content: "";
+  background-image: url(./images/Babe.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  animation: zoomInOut 20s infinite alternate;
+}
+
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.t__main {
   color: white;
 }
 
@@ -244,13 +266,17 @@ body {
   background-color: black;
   color: white;
   border-radius: 18px;
+  z-index: 1;
 }
 
-.t__desc{
+.t__desc {
   margin-top: 70%;
   background-color: black;
   color: white;
+  z-index: 1;
 }
+
+
 
 .Profile__container{
   background-color: white;
@@ -258,4 +284,17 @@ body {
   max-width: fit-content;
   padding: 20px;
   margin: auto;
+}
+
+.Profile__container {
+  animation: moveUpAndDown 3s ease-in-out infinite;
+}
+
+@keyframes moveUpAndDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
