@@ -1,13 +1,10 @@
-// Imports
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 
-// CSS
 import './App.css';
 
-// Components
 import Signup from './components/Signup';
 import About from './components/About';
 import Footer from './components/Footer';
@@ -21,7 +18,6 @@ import Teresa from './components/Teresa';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('jwtToken');
-  console.log('===> Hitting a Private Route');
 
   return (
     <Route
@@ -38,7 +34,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const App = () => {
-  // Set state values
   const [currentUser, setCurrentUser] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
@@ -48,8 +43,6 @@ const App = () => {
 
       if (!token) {
         setIsAuthenticated(false);
-        console.log('====> Authenticated is now FALSE');
-        console.log('change the app');
       } else {
         const decodedToken = jwt_decode(token);
         setAuthToken(token);
@@ -61,14 +54,12 @@ const App = () => {
   }, []);
 
   const nowCurrentUser = (userData) => {
-    console.log('===> nowCurrentUser is here.');
     setCurrentUser(userData);
     setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
     if (localStorage.getItem('jwtToken')) {
-      // Remove token from localStorage
       localStorage.removeItem('jwtToken');
       setCurrentUser(null);
       setIsAuthenticated(false);
@@ -103,7 +94,12 @@ const App = () => {
             <Route path="/about" component={About} />
             <Route path="/weather" component={WeatherComponent} />
             <Route path="/countries" component={Countries} />
-            <Route path="/teresa" component={Teresa} />
+            <PrivateRoute
+              path="/teresa"
+              component={Teresa}
+              user={currentUser}
+              handleLogout={handleLogout}
+            />
           </Switch>
         </div>
         <Footer />
