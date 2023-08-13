@@ -260,22 +260,27 @@ body {
 
 .t__main {
   color: white;
+  position: relative; /* Add position relative to make z-index work */
+  z-index: 1; /* Bring the heading to the front */
 }
 
 .t__main h1 {
   background-color: black;
   color: white;
   border-radius: 18px;
-  z-index: 1;
 }
 
 .t__desc {
-  margin-top: 70%;
   background-color: black;
   color: white;
-  z-index: 1;
+  position: absolute; /* Use absolute positioning */
+  bottom: 0; /* Position at the bottom of the container */
+  left: 0; /* Align with the left edge of the container */
+  right: 0; /* Align with the right edge of the container */
+  padding: 10px; /* Add padding for spacing */
+  box-sizing: border-box; /* Include padding in width calculation */
+  z-index: 1; /* Bring the description to the front */
 }
-
 
 
 .Profile__container{
