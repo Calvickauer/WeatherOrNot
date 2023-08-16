@@ -15,6 +15,7 @@ import Welcome from './components/Welcome';
 import WeatherComponent from './components/Weather';
 import Countries from './components/Countries';
 import Teresa from './components/Teresa';
+import Messages from './components/Messages'; 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('jwtToken');
@@ -97,6 +98,12 @@ const App = () => {
             <PrivateRoute
               path="/teresa"
               component={Teresa}
+              user={currentUser}
+              handleLogout={handleLogout}
+            />
+            <PrivateRoute
+              path="/messages"
+              component={Messages}
               user={currentUser}
               handleLogout={handleLogout}
             />

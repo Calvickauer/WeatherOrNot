@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; // Import Axios for API requests
 
 const Profile = (props) => {
     const { handleLogout, user } = props;
     const { id, name, email, exp } = user;
     const expirationTime = new Date(exp * 1000);
     let currentTime = Date.now();
+
+    const [messages, setMessages] = useState([]);
+    const [loadingMessages, setLoadingMessages] = useState(true);
+
+    useEffect(() => {
+        // Fetch messages here
+        axios
+            .get('/api/messages') // Update the API endpoint accordingly
+            .then((response) => {
+                setMessages(response.data.message);
+                setLoadingMessages(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching messages:', error);
+                setLoadingMessages(false);
+            });
+    }, []);
 
     if (currentTime >= expirationTime) {
         handleLogout();
@@ -18,22 +36,34 @@ const Profile = (props) => {
             <p>Name: {name}</p>
             <p>Email: {email}</p>
             <p>ID: {id}</p>
+            <div>
+                <h2>Messages</h2>
+                {loadingMessages ? (
+                    <p>Loading messages...</p>
+                ) : (
+                    <ul>
+                        {messages.map((message, index) => (
+                            <li key={index}>{message}</li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
-    ) : <h2>Loading...</h2>;
+    ) : (
+        <h2>Loading...</h2>
+    );
 
     const errorDiv = () => {
         return (
             <div className="text-center pt-4">
-                <h3>Please <Link to="/login">login</Link> to view this page</h3>
+                <h3>
+                    Please <Link to="/login">login</Link> to view this page
+                </h3>
             </div>
         );
     };
-    
-    return (
-        <div className="text-center pt-4">
-            {user ? userData : errorDiv()}
-        </div>
-    );
-}
+
+    return <div className="text-center pt-4">{user ? userData : errorDiv()}</div>;
+};
 
 export default Profile;
