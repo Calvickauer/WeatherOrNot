@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
   const { handleLogout, user } = props;
   const { id, name, email, exp } = user;
-  const expirationTime = new Date(exp * 1000);
   let currentTime = Date.now();
 
-  const sampleMessages = [
-    'Hello there!',
-    'Welcome to the messages page.',
-    'You got some mufuckin mail boi!!!',
-  ];
+  useEffect(() => {
+    const expirationTime = new Date(exp * 1000);
 
-  if (currentTime >= expirationTime) {
-    handleLogout();
-    alert('Session has ended. Please login to continue.');
-  }
+    if (currentTime >= expirationTime) {
+      handleLogout();
+      alert('Session has ended. Please login to continue.');
+    }
+  }, [currentTime, exp, handleLogout]);
 
   const userData = user ? (
     <div className="Profile__container">
@@ -27,9 +24,7 @@ const Profile = (props) => {
       <div>
         <h2>Messages</h2>
         <ul>
-          {sampleMessages.map((message, index) => (
-            <li key={index}>{message}</li>
-          ))}
+          {/* Messages list */}
         </ul>
       </div>
     </div>
