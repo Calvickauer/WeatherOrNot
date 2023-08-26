@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
+
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 
@@ -16,6 +17,7 @@ import WeatherComponent from './components/Weather';
 import Countries from './components/Countries';
 import Teresa from './components/Teresa';
 import Messages from './components/Messages'; 
+import NotFound from './components/NotFound';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('jwtToken');
@@ -73,6 +75,7 @@ const App = () => {
         <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
         <div className="container mt-5">
           <Switch>
+            <Route component={NotFound} />
             <Route path="/signup" component={Signup} />
             <Route
               path="/login"
