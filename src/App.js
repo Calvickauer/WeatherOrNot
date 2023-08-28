@@ -71,50 +71,51 @@ const App = () => {
 
   return (
     <Router>
-      <div className="App">
-        <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-        <div className="container mt-5">
-          <Switch>
-            <Route component={NotFound} />
-            <Route path="/signup" component={Signup} />
-            <Route
-              path="/login"
-              render={(props) => (
-                <Login
-                  {...props}
-                  nowCurrentUser={nowCurrentUser}
-                  setIsAuthenticated={setIsAuthenticated}
-                  user={currentUser}
-                />
-              )}
-            />
-            <PrivateRoute
-              path="/profile"
-              component={Profile}
-              user={currentUser}
-              handleLogout={handleLogout}
-            />
-            <Route exact path="/" component={Welcome} />
-            <Route path="/about" component={About} />
-            <Route path="/weather" component={WeatherComponent} />
-            <Route path="/countries" component={Countries} />
-            <PrivateRoute
-              path="/teresa"
-              component={Teresa}
-              user={currentUser}
-              handleLogout={handleLogout}
-            />
-            <PrivateRoute
-              path="/messages"
-              component={Messages}
-              user={currentUser}
-              handleLogout={handleLogout}
-            />
-          </Switch>
-        </div>
-        <Footer />
+    <div className="App">
+      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
+      <div className="container mt-5">
+        <Switch>
+          <Route path="/signup" component={Signup} />
+          <Route
+            path="/login"
+            render={(props) => (
+              <Login
+                {...props}
+                nowCurrentUser={nowCurrentUser}
+                setIsAuthenticated={setIsAuthenticated}
+                user={currentUser}
+              />
+            )}
+          />
+          <PrivateRoute
+            path="/profile"
+            component={Profile}
+            user={currentUser}
+            handleLogout={handleLogout}
+          />
+          <Route exact path="/" component={Welcome} />
+          <Route path="/about" component={About} />
+          <Route path="/weather" component={WeatherComponent} />
+          <Route path="/countries" component={Countries} />
+          <PrivateRoute
+            path="/teresa"
+            component={Teresa}
+            user={currentUser}
+            handleLogout={handleLogout}
+          />
+          <PrivateRoute
+            path="/messages"
+            component={Messages}
+            user={currentUser}
+            handleLogout={handleLogout}
+          />
+          <Route component={NotFound} /> {/* Place NotFound at the end */}
+        </Switch>
       </div>
-    </Router>
+      <Footer />
+    </div>
+  </Router>
+  
   );
 };
 

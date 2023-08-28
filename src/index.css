@@ -369,7 +369,7 @@ body {
     padding: 1rem;
   }
 }
-
+/* 
 .Notfound__container{
   width: fit-content;
   padding: 20px;
@@ -377,4 +377,61 @@ body {
   margin-right: auto;
   background-color: white;
   border: 2px solid black;
+} */
+.Notfound__container {
+  text-align: center;
+  margin-top: 100px;
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: bounce 5s infinite; 
+  border: 2px solid black;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.BouncingImage {
+  width: 400px;
+  height: 400px;
+  background-image: url('./images/Lost.png');
+  background-size: cover;
+  animation: bounce 1s infinite;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes showHideText {
+  0%, 100% {
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+}
+
+.PopupText {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  animation: showHideText 3s infinite, showHideTextDelay 15s infinite;
+  opacity: 0;
+}
+
+@keyframes showHideTextDelay {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
