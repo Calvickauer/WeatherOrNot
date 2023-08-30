@@ -98,18 +98,19 @@ const App = () => {
           <Route path="/weather" component={WeatherComponent} />
           <Route path="/countries" component={Countries} />
           <PrivateRoute
-            path="/teresa"
-            component={Teresa}
-            user={currentUser}
-            handleLogout={handleLogout}
-          />
+              path="/teresa"
+              component={Teresa}
+              user={currentUser}
+              handleLogout={handleLogout}
+              allowedUserId="64d34a531a5d00264b9bf94d" // TheDude: Tony Dude: TheDude@gmail.com
+            />
           <PrivateRoute
             path="/messages"
             component={Messages}
             user={currentUser}
             handleLogout={handleLogout}
           />
-          <Route component={NotFound} /> {/* Place NotFound at the end */}
+          <Route component={NotFound} />
         </Switch>
       </div>
       <Footer />
