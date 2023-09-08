@@ -42,22 +42,20 @@ const Login = (props) => {
     }
 
     return (
-        <div className="row mt-4">
-            <div className="col-md-7 offset-md-3">
-                <div className="card card-body">
-                    <h2 className="py-2">Login</h2>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" name="email" value={email} onChange={handleEmailChange} className="form-control" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" name="password" value={password} onChange={handlePasswordChange} className="form-control" />
-                        </div>
-                        <button type="submit" className="btn btn-primary float-right">Submit</button>
-                    </form>
-                </div>
+        <div className="custom-login-container">
+            <div className="custom-login-card">
+                <h2 className="custom-login-heading">Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="custom-form-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" name="email" value={email} onChange={handleEmailChange} className="custom-form-control" />
+                    </div>
+                    <div className="custom-form-group">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" value={password} onChange={handlePasswordChange} className="custom-form-control" />
+                    </div>
+                    <button type="submit" className="custom-submit-button">Submit</button>
+                </form>
             </div>
         </div>
     );
