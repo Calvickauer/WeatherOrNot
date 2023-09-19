@@ -6,6 +6,11 @@ body {
   font-family: sans-serif;
   text-align: center;
 }
+
+a {
+  color: white !important;
+  text-decoration: underline;
+}
 ​
 .body__container {
   background-color: rgb(255, 51, 0);
