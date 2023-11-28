@@ -516,3 +516,7 @@ a {
   cursor: pointer;
   width: 100%;
 }
+
+.clicked {
+  display: none; 
+}
